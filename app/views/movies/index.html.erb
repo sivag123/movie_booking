@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>Welcome!</h1>
+    <p>Current movies shown</p>
+    <div class="movies_list">
+
+
+      <% @movies.each do |movie| %>
+        <h3> Movie :: <%= movie[:name]%></h3>
+          <span><b>Language</b> <%= movie[:language]%></span>
+          <div class="row">
+            <div class="col-xs-6 col-md-4">
+              <%= movie[:crew]%>
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <b>Price</b>: <%= movie[:currency]%> <%=movie[:fee]%>
+            </div>
+            <div class="col-xs-12 col-md-4">
+              <a href =<%= movie_screens_path_url(movie[:id])%>>
+                <div class="btn btn-primary">Screens</div>
+              </a>
+            </div>
+          </div>
+      <%end%>
+    </div>
+  </div>
+</div>

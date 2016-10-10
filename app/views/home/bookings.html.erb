@@ -1,0 +1,47 @@
+<div class="jumbotron">
+  <div class="container">
+    <p>Tickets booked</p>
+    <div class="ticket_list">
+      <% @ticket_array.each do |ticket| %>
+          <h4>Ticket no: <%= ticket[:id]%></h4>
+          <div class="row">
+            <h5> Movie Info </h5>
+            <div class="col-md-3">
+             <span><b> Movie</b> <%= ticket[:movie]%></span>
+            </div>
+            <div class="col-md-3">
+             <span><b> Language</b> <%= ticket[:language]%></span>
+            </div>
+            <div class="col-md-3">
+             <span><b> Seats</b> <%= ticket[:seats]%></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <h5> Theater Info </h5>
+            <div class="col-md-3">r
+             <span><b>Theater</b> <%= ticket[:theater_name]%>,<%= ticket[:theater_city]%> </span>
+            </div>
+            <div class="col-md-3">
+             <span><b> Show time</b> <%= ticket[:show_time].strftime("%H:%M:%S")%></span>
+            </div>
+            <div class="col-md-3">
+             <span><b> Amount</b> <%= ticket[:amount]%></span>
+            </div>
+            <div class="col-xs-6 col-md-3">
+              <%if ticket[:active] %>
+                  <a href="<%=cancel_booking_path(ticket[:id])%>">
+                  <button type="button" class="btn btn-danger" style="width: 100%;color: white;">Cancel</button>
+                  </a>
+              <%else%>
+                  <div style="height: 40px; line-height: 40px; background-color: lightgrey; text-align: center; border: 1px solid;">Cancelled!</div>
+            <%end%>
+            </div>
+          </div>
+
+          <br><br><br>
+
+      <%end%>
+    </div>
+  </div>
+</div>

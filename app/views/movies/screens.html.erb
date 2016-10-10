@@ -1,0 +1,32 @@
+<div class="jumbotron">
+  <div class="container">
+    <p>Screens showing <%= @movie_screens.first.second[:show_times].first[:movie_name]%></p>
+    <div class="theater_list">
+      <% @movie_screens.each do |_,theater| %>
+          <h3> <%= theater[:theater_name]%> , <%= theater[:theater_city]%></h3>
+          <% theater[:show_times].each do |show|%>
+              <div><b>Date</b> <%= show[:show_date]%></div>
+              <div class="row">
+                <div class="col-xs-4 col-md-3">
+                  Time <%= show[:show_time].strftime("%H:%M:%S")%>
+                </div>
+                <div class="col-xs-4 col-md-3">
+                  Seats <%= show[:remaining_seats]%> (Total :<%= show[:total_capacity] %>)
+                </div>
+                <div class="col-xs-4 col-md-3">
+                  Price <%= show[:movie_fee]%>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <%if MovieScreen.valid_to_book(show[:movie_screen_id])%>
+                      <a href= <%="/booking/#{show[:movie_screen_id]}"%>>
+                      <button type="button" class="btn btn-primary" style="width: 100%;color:white;"> Book </button></a>
+                  <%else%>
+                      <div style="height: 40px; line-height: 40px; background-color: lightgrey; text-align: center; border: 1px solid;">Ended!</div>
+                  <%end%>
+                </div>
+              </div>
+          <%end%>
+      <%end%>
+    </div>
+  </div>
+</div>

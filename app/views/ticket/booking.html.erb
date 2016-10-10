@@ -1,0 +1,16 @@
+<div class="jumbotron">
+  <div class="container">
+    <%= form_for(:ticket, url: book_ticket_path_url) do |f| %>
+
+    <div class="field">
+      <%= f.label :quantity %><br />
+      <%= f.text_field :quantity, autofocus: true %>
+    </div>
+
+        <div class="actions">
+          <%= f.submit "Confirm booking" %>
+        </div>
+    <%end%>
+
+  </div>
+</div>
